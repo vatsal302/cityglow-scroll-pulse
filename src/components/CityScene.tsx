@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import cityMapImg from "../assets/media__1777297214643.png";
 
 type Stats = { fps: number; ms: number; draws: number };
 
@@ -51,16 +52,16 @@ export default function CityScene({ onReady, onStats }: Props) {
     scene.add(dirLight);
 
     const texLoader = new THREE.TextureLoader();
-    const map = texLoader.load("/media__1777297214643.png");
+    const map = texLoader.load(cityMapImg);
     map.colorSpace = THREE.SRGBColorSpace;
 
-    const planeGeo = new THREE.PlaneGeometry(60, 40, 512, 512);
+    const planeGeo = new THREE.PlaneGeometry(60, 40, 256, 256);
     const planeMat = new THREE.MeshStandardMaterial({
       map: map,
       displacementMap: map,
-      displacementScale: 6.0,
-      roughness: 0.6,
-      metalness: 0.2,
+      displacementScale: 8.0,
+      roughness: 0.8,
+      metalness: 0.1,
       side: THREE.DoubleSide
     });
 

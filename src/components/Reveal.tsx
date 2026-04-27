@@ -5,7 +5,6 @@ type Props = {
   delay?: number;
   y?: number;
   className?: string;
-  as?: "div" | "section" | "header" | "li" | "p" | "span";
 };
 
 /**
@@ -13,13 +12,7 @@ type Props = {
  * - 16px translate, fades to opacity 1, blur(4px) → blur(0)
  * - 700ms ease-out, triggers at 18% in viewport, plays once
  */
-export function Reveal({
-  children,
-  delay = 0,
-  y = 16,
-  className = "",
-  as: Tag = "div",
-}: Props) {
+export function Reveal({ children, delay = 0, y = 16, className = "" }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [shown, setShown] = useState(false);
 
@@ -55,11 +48,10 @@ export function Reveal({
     willChange: "transform, opacity, filter",
   };
 
-  // @ts-expect-error - dynamic tag with ref
   return (
-    <Tag ref={ref} style={style} className={className}>
+    <div ref={ref} style={style} className={className}>
       {children}
-    </Tag>
+    </div>
   );
 }
 

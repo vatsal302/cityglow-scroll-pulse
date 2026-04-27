@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
-import { Bus, Train, Tram } from "lucide-react";
+import { Bus, Train, TramFront } from "lucide-react";
 
 export const Route = createFileRoute("/public-transport")({
   head: () => ({
@@ -126,7 +126,7 @@ function PublicTransport() {
                       <p className="text-[15px] font-medium text-foreground">{l.name}</p>
                       <p className="flex items-center gap-1 text-xs capitalize text-foreground/55">
                         {l.type === "metro" && <Train className="h-3 w-3" />}
-                        {l.type === "tram" && <Tram className="h-3 w-3" />}
+                        {l.type === "tram" && <TramFront className="h-3 w-3" />}
                         {l.type === "bus" && <Bus className="h-3 w-3" />}
                         {l.type}
                       </p>

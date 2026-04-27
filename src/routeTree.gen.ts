@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RoutesPlannerRouteImport } from './routes/routes-planner'
+import { Route as PublicTransportRouteImport } from './routes/public-transport'
+import { Route as LiveTrafficRouteImport } from './routes/live-traffic'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RoutesPlannerRoute = RoutesPlannerRouteImport.update({
+  id: '/routes-planner',
+  path: '/routes-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicTransportRoute = PublicTransportRouteImport.update({
+  id: '/public-transport',
+  path: '/public-transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveTrafficRoute = LiveTrafficRouteImport.update({
+  id: '/live-traffic',
+  path: '/live-traffic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,88 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/live-traffic': typeof LiveTrafficRoute
+  '/public-transport': typeof PublicTransportRoute
+  '/routes-planner': typeof RoutesPlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/live-traffic': typeof LiveTrafficRoute
+  '/public-transport': typeof PublicTransportRoute
+  '/routes-planner': typeof RoutesPlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/live-traffic': typeof LiveTrafficRoute
+  '/public-transport': typeof PublicTransportRoute
+  '/routes-planner': typeof RoutesPlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/live-traffic'
+    | '/public-transport'
+    | '/routes-planner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/live-traffic'
+    | '/public-transport'
+    | '/routes-planner'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/live-traffic'
+    | '/public-transport'
+    | '/routes-planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  LiveTrafficRoute: typeof LiveTrafficRoute
+  PublicTransportRoute: typeof PublicTransportRoute
+  RoutesPlannerRoute: typeof RoutesPlannerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/routes-planner': {
+      id: '/routes-planner'
+      path: '/routes-planner'
+      fullPath: '/routes-planner'
+      preLoaderRoute: typeof RoutesPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/public-transport': {
+      id: '/public-transport'
+      path: '/public-transport'
+      fullPath: '/public-transport'
+      preLoaderRoute: typeof PublicTransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-traffic': {
+      id: '/live-traffic'
+      path: '/live-traffic'
+      fullPath: '/live-traffic'
+      preLoaderRoute: typeof LiveTrafficRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +137,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  LiveTrafficRoute: LiveTrafficRoute,
+  PublicTransportRoute: PublicTransportRoute,
+  RoutesPlannerRoute: RoutesPlannerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

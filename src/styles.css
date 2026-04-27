@@ -30,6 +30,9 @@
   --color-ring: var(--ring);
   --color-energy: var(--energy);
   --color-tungsten: var(--tungsten);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-violet: var(--neon-violet);
+  --color-neon-magenta: var(--neon-magenta);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);

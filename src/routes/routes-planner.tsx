@@ -4,6 +4,19 @@ import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import { ArrowRight, Bike, Bus, Car, Footprints, Zap } from "lucide-react";
 
+const CITIES = [
+  "Northwest Aspect Plaza",
+  "Canyon Streets Tower",
+  "Neon Harbor Transit Hub",
+  "Central Atrium",
+  "Lower Viaduct",
+  "Riverline Express",
+  "Greenway Lane",
+  "Pier 7",
+  "Old Town Junction",
+  "Skyway Terminus"
+];
+
 export const Route = createFileRoute("/routes-planner")({
   head: () => ({
     meta: [
@@ -293,8 +306,11 @@ function Field({
   placeholder?: string;
   dot?: string;
 }) {
+  const [open, setOpen] = useState(false);
+  const filtered = CITIES.filter(c => c.toLowerCase().includes(value.toLowerCase()) && c !== value);
+
   return (
-    <label className="block">
+    <label className="block relative">
       <span className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-foreground/55">
         {label}
       </span>
@@ -302,12 +318,35 @@ function Field({
         <span className={`h-2 w-2 rounded-full ${dot ?? "bg-foreground/60"}`} />
         <input
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => {
+            onChange(e.target.value);
+            setOpen(true);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 200)}
           placeholder={placeholder}
           className="w-full bg-transparent text-sm text-foreground placeholder:text-foreground/30 focus:outline-none"
           maxLength={120}
         />
       </span>
+      {open && filtered.length > 0 && (
+        <ul className="absolute z-10 mt-1 max-h-40 w-full overflow-auto rounded-xl border border-white/10 bg-[#0a0d1f]/95 p-1 shadow-xl backdrop-blur-md">
+          {filtered.map(c => (
+            <li key={c}>
+              <button
+                type="button"
+                className="w-full rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-white/10"
+                onClick={() => {
+                  onChange(c);
+                  setOpen(false);
+                }}
+              >
+                {c}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </label>
   );
 }

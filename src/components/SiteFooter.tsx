@@ -24,14 +24,12 @@ export function SiteFooter() {
               { to: "/live-traffic", label: "Live Traffic" },
               { to: "/routes-planner", label: "Routes Planner" },
               { to: "/public-transport", label: "Public Transport" },
-              { to: "/3d-generator", label: "3D Generator" },
             ]}
           />
           <FooterCol
             title="Company"
             links={[
               { to: "/", label: "Overview" },
-              { to: "/contact", label: "Contact" },
             ]}
           />
           <div className="space-y-2">
@@ -60,7 +58,7 @@ function FooterCol({
   links,
 }: {
   title: string;
-  links: { to: "/" | "/live-traffic" | "/routes-planner" | "/public-transport" | "/3d-generator" | "/contact"; label: string }[];
+  links: { to: "/" | "/live-traffic" | "/routes-planner" | "/public-transport"; label: string }[];
 }) {
   return (
     <div className="space-y-3">

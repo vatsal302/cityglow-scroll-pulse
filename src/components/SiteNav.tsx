@@ -7,8 +7,6 @@ const links = [
   { to: "/live-traffic" as const, label: "Live Traffic" },
   { to: "/routes-planner" as const, label: "Routes Planner" },
   { to: "/public-transport" as const, label: "Public Transport" },
-  { to: "/3d-generator" as const, label: "3D Generator" },
-  { to: "/contact" as const, label: "Contact" },
 ];
 
 export function SiteNav() {
@@ -74,14 +72,6 @@ export function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/3d-generator"
-            preload="intent"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-[12.5px] font-medium text-background transition-transform hover:-translate-y-px active:scale-[0.97]"
-          >
-            Try the Generator
-            <span aria-hidden>→</span>
-          </Link>
           <button
             type="button"
             onClick={() => setOpen((s) => !s)}

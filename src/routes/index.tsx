@@ -16,7 +16,6 @@ import {
   ActivitySquare,
   Compass,
   Bus,
-  Boxes,
   ArrowUpRight,
   Sparkles,
 } from "lucide-react";
@@ -155,16 +154,6 @@ function Index() {
                 accent="from-[var(--neon-violet)]/30 to-transparent"
                 delay={160}
               />
-              <CapabilityCard
-                index="04"
-                to="/3d-generator"
-                title="3D Generator"
-                desc="Drop a photograph of a building or vehicle. Receive a navigable, web-ready 3D asset in seconds. Powered by AI."
-                icon={<Boxes className="h-4 w-4" />}
-                accent="from-[var(--neon-magenta)]/30 to-transparent"
-                delay={240}
-                badge="AI"
-              />
             </div>
           </div>
         </section>
@@ -194,46 +183,7 @@ function Index() {
         </section>
 
         {/* CTA */}
-        <section className="relative border-t border-white/10 bg-background/90 px-5 py-28 md:px-8 md:py-36">
-          <div className="mx-auto max-w-[1100px] text-center">
-            <Reveal>
-              <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/50">
-                <Sparkles className="mr-1.5 inline h-3 w-3 align-[-2px]" />
-                3D Generator · Beta
-              </p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-4 font-display text-balance text-5xl leading-[1.04] tracking-tight md:text-7xl">
-                A photograph in.
-                <br />
-                <span className="text-gradient">A city block out.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={180}>
-              <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-foreground/65 md:text-lg">
-                Upload an image. Our model reads façades, mass and material,
-                then returns a clean low-poly mesh ready for the web.
-              </p>
-            </Reveal>
-            <Reveal delay={260}>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/3d-generator"
-                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:-translate-y-px active:scale-[0.97]"
-                >
-                  Open the Generator
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-foreground/85 transition-colors hover:bg-white/10 active:scale-[0.97]"
-                >
-                  Talk to the team
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+
 
         <SiteFooter />
       </div>
@@ -254,7 +204,7 @@ function CapabilityCard({
   index: string;
   title: string;
   desc: string;
-  to: "/live-traffic" | "/routes-planner" | "/public-transport" | "/3d-generator";
+  to: "/live-traffic" | "/routes-planner" | "/public-transport";
   icon: React.ReactNode;
   accent: string;
   delay?: number;

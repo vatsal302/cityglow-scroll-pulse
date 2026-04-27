@@ -13,6 +13,7 @@ import { Route as RoutesPlannerRouteImport } from './routes/routes-planner'
 import { Route as PublicTransportRouteImport } from './routes/public-transport'
 import { Route as LiveTrafficRouteImport } from './routes/live-traffic'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as R3dGeneratorRouteImport } from './routes/3d-generator'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RoutesPlannerRoute = RoutesPlannerRouteImport.update({
@@ -35,6 +36,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R3dGeneratorRoute = R3dGeneratorRouteImport.update({
+  id: '/3d-generator',
+  path: '/3d-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/3d-generator': typeof R3dGeneratorRoute
   '/contact': typeof ContactRoute
   '/live-traffic': typeof LiveTrafficRoute
   '/public-transport': typeof PublicTransportRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/3d-generator': typeof R3dGeneratorRoute
   '/contact': typeof ContactRoute
   '/live-traffic': typeof LiveTrafficRoute
   '/public-transport': typeof PublicTransportRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/3d-generator': typeof R3dGeneratorRoute
   '/contact': typeof ContactRoute
   '/live-traffic': typeof LiveTrafficRoute
   '/public-transport': typeof PublicTransportRoute
@@ -67,6 +76,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/3d-generator'
     | '/contact'
     | '/live-traffic'
     | '/public-transport'
@@ -74,6 +84,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/3d-generator'
     | '/contact'
     | '/live-traffic'
     | '/public-transport'
@@ -81,6 +92,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/3d-generator'
     | '/contact'
     | '/live-traffic'
     | '/public-transport'
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R3dGeneratorRoute: typeof R3dGeneratorRoute
   ContactRoute: typeof ContactRoute
   LiveTrafficRoute: typeof LiveTrafficRoute
   PublicTransportRoute: typeof PublicTransportRoute
@@ -125,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/3d-generator': {
+      id: '/3d-generator'
+      path: '/3d-generator'
+      fullPath: '/3d-generator'
+      preLoaderRoute: typeof R3dGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -137,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R3dGeneratorRoute: R3dGeneratorRoute,
   ContactRoute: ContactRoute,
   LiveTrafficRoute: LiveTrafficRoute,
   PublicTransportRoute: PublicTransportRoute,
